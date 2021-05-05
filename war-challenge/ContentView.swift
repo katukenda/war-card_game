@@ -20,148 +20,158 @@ struct ContentView: View {
     var body: some View {
         
         ZStack{
-            Image("background")
-                .ignoresSafeArea()
             
             VStack{
-                Spacer()
-                
-                Image("logo")
-                Text(winingStatement + " " + tern)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.pink)
-                
-                Spacer()
-                
-                HStack{
+                VStack{
                     Spacer()
-                    Image(playerCard)
+                    
+                    Image("logo")
+                    
                     Spacer()
-                    Image(cpuCard)
+                    Text(winingStatement + " " + tern)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.pink)
+                    
                     Spacer()
-                }
-               
-                Spacer()
-                
-                Button(action: {
-                    //generate randon number 2 and 14
                     
-                    let playerRand = Int.random(in: 2...14)
-                    let cpuRand = Int.random(in: 2...14)
-                    
-                    // Updaye the cards
-                    playerCard = "card" + String(playerRand)
-                    cpuCard = "card" + String(cpuRand)
-                    
-                    if (count >= 1 ) {
-                        
-                        if (count % 2 == 0){
-                            count = count - 1
-                            tern = "CPU"
-                            if ( playerRand > cpuRand ) {
-                             playerScore += 1
-                            }
-                            else if (playerRand < cpuRand) {
-                                
-                                cpuScore += 1
-                            }
-                            
-                            else{
-                                playerScore += 1
-                                cpuScore += 1
-                              
-                            }
-                        }
-                        
-                        else{
-                            tern = "player"
-                            count = count - 1
-                            if ( playerRand > cpuRand ) {
-                             playerScore += 1
-                            }
-                            else if (playerRand < cpuRand) {
-                                
-                                cpuScore += 1
-                            }
-                            
-                            else{
-                                playerScore += 1
-                                cpuScore += 1
-                              
-                            }
-                        }
-                        
-                       
-                    }
-                    else{
-                        winingStatement = "The winner is "
-                        gameMode = true
-                        if( cpuScore > playerScore){
-                            tern = "CPU"
-                        }
-                        
-                        else if (cpuScore == playerScore) {
-                            winingStatement = "No winner"
-                            tern = ""
-                        }
-                        else{
-                            tern = "Player"
-                        }
+                    HStack{
+                        Spacer()
+                        Image(playerCard)
+                        Spacer()
+                        Image(cpuCard)
+                        Spacer()
                     }
                    
-                    //update the score
-                    //playerScore += 1
-                    //cpuScore += 1
-                }, label: {
-                    Image("dealbutton")
-                })
-                .disabled(gameMode)
+                    Spacer()
+                    
+                    Button(action: {
+                        //generate randon number 2 and 14
+                        
+                        let playerRand = Int.random(in: 2...14)
+                        let cpuRand = Int.random(in: 2...14)
+                        
+                        // Updaye the cards
+                        playerCard = "card" + String(playerRand)
+                        cpuCard = "card" + String(cpuRand)
+                        
+                        if (count >= 1 ) {
+                            
+                            if (count % 2 == 0){
+                                count = count - 1
+                                tern = "CPU"
+                                if ( playerRand > cpuRand ) {
+                                 playerScore += 1
+                                }
+                                else if (playerRand < cpuRand) {
+                                    
+                                    cpuScore += 1
+                                }
+                                
+                                else{
+                                    playerScore += 1
+                                    cpuScore += 1
+                                  
+                                }
+                            }
+                            
+                            else{
+                                tern = "player"
+                                count = count - 1
+                                if ( playerRand > cpuRand ) {
+                                 playerScore += 1
+                                }
+                                else if (playerRand < cpuRand) {
+                                    
+                                    cpuScore += 1
+                                }
+                                
+                                else{
+                                    playerScore += 1
+                                    cpuScore += 1
+                                  
+                                }
+                            }
+                            
+                           
+                        }
+                        else{
+                            winingStatement = "The winner is "
+                            gameMode = true
+                            if( cpuScore > playerScore){
+                                tern = "CPU"
+                            }
+                            
+                            else if (cpuScore == playerScore) {
+                                winingStatement = "No winner"
+                                tern = ""
+                            }
+                            else{
+                                tern = "Player"
+                            }
+                        }
+                       
+                        //update the score
+                        //playerScore += 1
+                        //cpuScore += 1
+                    }, label: {
+                        Image("dealbutton")
+                    })
+                    .disabled(gameMode)
+                    
+                    Spacer()
+                    
+                    HStack{
+                        Spacer()
+                        VStack{
+                            Text("Player")
+                                .font(.headline)
+                                .foregroundColor(Color.white)
+                                .padding(.bottom, 10.0)
+                            Text(String(playerScore))
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundColor(Color.white)
+                                .padding(10.0)
+                        }
+                        Spacer()
+                        VStack{
+                            Text("CPU")
+                                .font(.headline)
+                                .foregroundColor(Color.white)
+                                .padding(.bottom, 10.0)
+                            Text(String(cpuScore))
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundColor(Color.white)
+                                .padding(10.0)
+                        }
+                        
+                        Spacer()
+                        
+                    }
+                    
+                   
+                    
+                    
+                }
                 
                 Spacer()
-                
-                HStack{
-                    Spacer()
-                    VStack{
-                        Text("Player")
-                            .font(.headline)
-                            .foregroundColor(Color.white)
-                            .padding(.bottom, 10.0)
-                        Text(String(playerScore))
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(Color.white)
-                            .padding(10.0)
-                    }
-                    Spacer()
-                    VStack{
-                        Text("CPU")
-                            .font(.headline)
-                            .foregroundColor(Color.white)
-                            .padding(.bottom, 10.0)
-                        Text(String(cpuScore))
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(Color.white)
-                            .padding(10.0)
-                    }
+                Text("JDevop")
+                    .font(.footnote)
+                    .foregroundColor(Color.red)
+                    .bold()
                     
-                    Spacer()
-                }
-                
-                
-                HStack{
-                    
-                    Text("JDevops")
-                        .font(.caption)
-                        .fontWeight(.bold)
-                        .padding(.bottom)
-                }
+                Spacer()
                 
             }
             
             
+    
+            
         }
+        .background(Color.green)
+        .ignoresSafeArea()
     }
 }
 
